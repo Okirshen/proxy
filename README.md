@@ -17,9 +17,9 @@ curl -X POST <hosted-url>
 
 redirect:
 ```bash
-curl -X POST <hosted-url>/<id>
+curl -X GET <hosted-url>/<id>
 
-# curl -X POST https://example-proxy.deno.dev/nxA9nl7V
+# curl -X GET https://example-proxy.deno.dev/nxA9nl7V
 ```
 
 ## Enviorment Variables
