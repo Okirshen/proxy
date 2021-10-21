@@ -1,6 +1,6 @@
 import { Application, Router } from 'https://deno.land/x/oak@v9.0.1/mod.ts';
 import { Airtable } from 'https://deno.land/x/airtable@v1.1.1/mod.ts';
-import ShortUniqueId from 'https://cdn.jsdelivr.net/npm/short-unique-id@latest/short_uuid/mod.ts';
+import { nanoid } from 'https://deno.land/x/nanoid/mod.ts';
 type Fields = {
   url: string;
   id: string;
@@ -27,10 +27,9 @@ router.post('/', async ctx => {
     ctx.request.headers.get('authorization')?.slice(7) == Deno.env.get('token')
   ) {
     const { url } = await ctx.request.body().value;
-    const id = new ShortUniqueId();
     const record = await airtable.create<Fields>({
       url,
-      id: id(),
+      id: nanoid(8),
     });
     ctx.response.status = 200;
     ctx.response.body = record;
